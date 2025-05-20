@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentLink.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TalentLink.Infrastructure.Persistence;
 namespace TalentLink.Infrastructure.Migrations
 {
     [DbContext(typeof(TalentLinkDbContext))]
-    partial class TalentLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250520182518_AddJobUserRelation")]
+    partial class AddJobUserRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -36,9 +39,6 @@ namespace TalentLink.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsAssigned")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("IsBoosted")
                         .HasColumnType("INTEGER");
 
@@ -54,36 +54,6 @@ namespace TalentLink.Infrastructure.Migrations
                     b.HasIndex("CreatedById");
 
                     b.ToTable("Jobs");
-                });
-
-            modelBuilder.Entity("TalentLink.Domain.Entities.JobApplication", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("AppliedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("JobId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JobId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("JobApplications");
                 });
 
             modelBuilder.Entity("TalentLink.Domain.Entities.User", b =>
@@ -168,25 +138,6 @@ namespace TalentLink.Infrastructure.Migrations
                     b.Navigation("CreatedBy");
                 });
 
-            modelBuilder.Entity("TalentLink.Domain.Entities.JobApplication", b =>
-                {
-                    b.HasOne("TalentLink.Domain.Entities.Job", "Job")
-                        .WithMany("Applications")
-                        .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TalentLink.Domain.Entities.Student", "Student")
-                        .WithMany("Applications")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Job");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("TalentLink.Domain.Entities.VerifiedStudent", b =>
                 {
                     b.HasOne("TalentLink.Domain.Entities.Parent", "Parent")
@@ -225,11 +176,6 @@ namespace TalentLink.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TalentLink.Domain.Entities.Job", b =>
-                {
-                    b.Navigation("Applications");
-                });
-
             modelBuilder.Entity("TalentLink.Domain.Entities.User", b =>
                 {
                     b.Navigation("CreatedJobs");
@@ -238,11 +184,6 @@ namespace TalentLink.Infrastructure.Migrations
             modelBuilder.Entity("TalentLink.Domain.Entities.Parent", b =>
                 {
                     b.Navigation("VerifiedStudents");
-                });
-
-            modelBuilder.Entity("TalentLink.Domain.Entities.Student", b =>
-                {
-                    b.Navigation("Applications");
                 });
 #pragma warning restore 612, 618
         }

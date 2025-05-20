@@ -13,6 +13,7 @@ namespace TalentLink.Domain.Entities
         public string Email { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
         public UserRole Role { get; set; }
+        public ICollection<Job> CreatedJobs { get; set; } = new List<Job>();
     }
 
     public enum UserRole
@@ -25,6 +26,8 @@ namespace TalentLink.Domain.Entities
     public class Student : User
     {
         public Guid? VerifiedByParentId { get; set; }
+        public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
+
     }
 
     public class Senior : User

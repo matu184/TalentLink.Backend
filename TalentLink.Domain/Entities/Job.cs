@@ -16,5 +16,10 @@ namespace TalentLink.Domain.Entities
         public bool IsBoosted { get; set; }
         public JobCategory Category { get; set; }
         public Guid CreatedById { get; set; }
+        public User CreatedBy { get; set; } = null!;
+        public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
+        public bool IsAssigned { get; set; } = false;
+
+
     }
 }

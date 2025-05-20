@@ -10,6 +10,21 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigins = "_myCorsPolicy";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowedOrigins,
+        policy =>
+        {
+            policy
+                .AllowAnyOrigin() 
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+
 // Datenbankbindung mit SQLite
 builder.Services.AddDbContext<TalentLinkDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -76,10 +91,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<TalentLinkDbContext>();
-    JobSeeder.Seed(context);
     UserSeeder.SeedUsers(context);
+    JobSeeder.Seed(context);
 }
-
+app.UseCors(allowedOrigins);
 app.UseAuthentication(); 
 app.UseAuthorization();
 app.UseSwagger();

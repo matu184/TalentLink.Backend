@@ -19,6 +19,7 @@ namespace TalentLink.Infrastructure.Persistence
         public DbSet<Parent> Parents => Set<Parent>();
         public DbSet<Job> Jobs => Set<Job>();
         public DbSet<VerifiedStudent> VerifiedStudents => Set<VerifiedStudent>();
+        public DbSet<JobApplication> JobApplications => Set<JobApplication>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +29,21 @@ namespace TalentLink.Infrastructure.Persistence
             modelBuilder.Entity<Student>().ToTable("Students");
             modelBuilder.Entity<Senior>().ToTable("Seniors");
             modelBuilder.Entity<Parent>().ToTable("Parents");
+
+            modelBuilder.Entity<Job>()
+                .HasOne(j => j.CreatedBy)
+                .WithMany(u => u.CreatedJobs)
+                .HasForeignKey(j => j.CreatedById);
+
+            modelBuilder.Entity<JobApplication>()
+                .HasOne(a => a.Job)
+                .WithMany(j => j.Applications)
+                .HasForeignKey(a => a.JobId);
+
+            modelBuilder.Entity<JobApplication>()
+                .HasOne(a => a.Student)
+                .WithMany(s => s.Applications)
+                .HasForeignKey(a => a.StudentId);
         }
     }
 }

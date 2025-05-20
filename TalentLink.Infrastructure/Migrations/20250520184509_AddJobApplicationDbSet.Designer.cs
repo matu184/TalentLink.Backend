@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentLink.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TalentLink.Infrastructure.Persistence;
 namespace TalentLink.Infrastructure.Migrations
 {
     [DbContext(typeof(TalentLinkDbContext))]
-    partial class TalentLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250520184509_AddJobApplicationDbSet")]
+    partial class AddJobApplicationDbSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -35,9 +38,6 @@ namespace TalentLink.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsAssigned")
-                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsBoosted")
                         .HasColumnType("INTEGER");
@@ -70,9 +70,6 @@ namespace TalentLink.Infrastructure.Migrations
 
                     b.Property<string>("Message")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
 
                     b.Property<Guid>("StudentId")
                         .HasColumnType("TEXT");

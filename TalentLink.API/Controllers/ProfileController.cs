@@ -30,19 +30,31 @@ namespace TalentLink.API.Controllers
 
             var user = await _context.Users
                 .Include(u => u.CreatedJobs)
-                .Include(u => (u is Parent) ? ((Parent)u).VerifiedStudents : null!)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null) return NotFound();
 
-            
             List<Job>? appliedJobs = null;
+            List<VerifiedStudent>? verifiedStudents = null;
+
             if (user is Student student)
             {
                 appliedJobs = await _context.JobApplications
                     .Where(a => a.StudentId == student.Id)
                     .Include(a => a.Job)
                     .Select(a => a.Job)
+                    .ToListAsync();
+            }
+            else if (user is Parent parent)
+            {
+                verifiedStudents = await _context.Students
+                    .Where(s => s.VerifiedByParentId == parent.Id)
+                    .Select(s => new VerifiedStudent
+                    {
+                        StudentId = s.Id,
+                        ParentId = parent.Id
+                    })
                     .ToListAsync();
             }
 
@@ -54,12 +66,11 @@ namespace TalentLink.API.Controllers
                 Role = user.Role,
                 CreatedJobs = user is Senior ? user.CreatedJobs.ToList() : null,
                 AppliedJobs = appliedJobs,
-                VerifiedStudents = user is Parent parent ? parent.VerifiedStudents.ToList() : null
+                VerifiedStudents = verifiedStudents
             };
 
             return Ok(dto);
         }
-
     }
-
 }
+

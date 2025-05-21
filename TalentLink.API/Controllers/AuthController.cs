@@ -75,9 +75,12 @@ namespace TalentLink.API.Controllers
             return Ok(new AuthResponseDto
             {
                 Token = tokenString,
+                Id = user.Id,
                 Name = user.Name,
-                Role = user.Role.ToString()
+                Email = user.Email,
+                Role = user.Role
             });
+
         }
     }
 }

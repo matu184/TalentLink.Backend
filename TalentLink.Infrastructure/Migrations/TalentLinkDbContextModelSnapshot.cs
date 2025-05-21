@@ -23,8 +23,8 @@ namespace TalentLink.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
@@ -50,6 +50,8 @@ namespace TalentLink.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CreatedById");
 
@@ -84,6 +86,109 @@ namespace TalentLink.Infrastructure.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("JobApplications");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.JobCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobCategories");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.JobComment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("JobId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("JobId");
+
+                    b.ToTable("JobComments");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.Rating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("FromUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("ToUserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("ToUserId");
+
+                    b.ToTable("Ratings");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.Tip", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.ToTable("Tips");
                 });
 
             modelBuilder.Entity("TalentLink.Domain.Entities.User", b =>
@@ -159,11 +264,19 @@ namespace TalentLink.Infrastructure.Migrations
 
             modelBuilder.Entity("TalentLink.Domain.Entities.Job", b =>
                 {
+                    b.HasOne("TalentLink.Domain.Entities.JobCategory", "Category")
+                        .WithMany("Jobs")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TalentLink.Domain.Entities.User", "CreatedBy")
                         .WithMany("CreatedJobs")
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("CreatedBy");
                 });
@@ -185,6 +298,55 @@ namespace TalentLink.Infrastructure.Migrations
                     b.Navigation("Job");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.JobComment", b =>
+                {
+                    b.HasOne("TalentLink.Domain.Entities.User", "Author")
+                        .WithMany("WrittenComments")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TalentLink.Domain.Entities.Job", "Job")
+                        .WithMany("Comments")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.Rating", b =>
+                {
+                    b.HasOne("TalentLink.Domain.Entities.User", "FromUser")
+                        .WithMany("GivenRatings")
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TalentLink.Domain.Entities.User", "ToUser")
+                        .WithMany("ReceivedRatings")
+                        .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("ToUser");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.Tip", b =>
+                {
+                    b.HasOne("TalentLink.Domain.Entities.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
                 });
 
             modelBuilder.Entity("TalentLink.Domain.Entities.VerifiedStudent", b =>
@@ -228,11 +390,24 @@ namespace TalentLink.Infrastructure.Migrations
             modelBuilder.Entity("TalentLink.Domain.Entities.Job", b =>
                 {
                     b.Navigation("Applications");
+
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("TalentLink.Domain.Entities.JobCategory", b =>
+                {
+                    b.Navigation("Jobs");
                 });
 
             modelBuilder.Entity("TalentLink.Domain.Entities.User", b =>
                 {
                     b.Navigation("CreatedJobs");
+
+                    b.Navigation("GivenRatings");
+
+                    b.Navigation("ReceivedRatings");
+
+                    b.Navigation("WrittenComments");
                 });
 
             modelBuilder.Entity("TalentLink.Domain.Entities.Parent", b =>

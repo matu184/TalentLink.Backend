@@ -40,6 +40,14 @@ namespace TalentLink.Infrastructure.Persistence
                 PasswordHash = Hash("123456"),
                 Role = UserRole.Parent,
                 VerifiedStudents = new List<VerifiedStudent>()
+            },
+            new Admin
+            {
+                Id = Guid.Parse("99999999-9999-9999-9999-999999999999"),
+                Name = "Admin",
+                Email = "admin@talentlink.de",
+                PasswordHash = Hash("admin123"),
+                Role = UserRole.Admin
             }
         };
 

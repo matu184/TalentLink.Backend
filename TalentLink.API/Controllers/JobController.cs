@@ -23,10 +23,90 @@ namespace TalentLink.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAll([FromQuery] Guid? categoryId)
         {
-            var jobs = await _jobService.GetAllJobsAsync();
+            var query = _context.Jobs
+                .Include(j => j.Category)
+                .Include(j => j.CreatedBy)
+                .AsQueryable();
+
+            if (categoryId.HasValue)
+            {
+                query = query.Where(j => j.CategoryId == categoryId.Value);
+            }
+
+            var jobs = await query
+                .OrderByDescending(j => j.CreatedAt)
+                .Select(j => new
+                {
+                    j.Id,
+                    j.Title,
+                    j.PricePerHour,
+                    j.IsBoosted,
+                    j.CreatedAt,
+                    Category = j.Category.Name,
+                    CategoryImage = j.Category.ImageUrl,
+                    CreatedBy = j.CreatedBy.Name
+                })
+                .ToListAsync();
+
             return Ok(jobs);
+        }
+
+
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var job = await _context.Jobs
+                .Include(j => j.Category)
+                .Include(j => j.CreatedBy)
+                .Include(j => j.Comments).ThenInclude(c => c.Author)
+                .Include(j => j.Applications).ThenInclude(a => a.Student)
+                .FirstOrDefaultAsync(j => j.Id == id);
+
+            if (job == null) return NotFound();
+
+            // Token optional – nur prüfen, wenn vorhanden
+            var userId = User.Identity?.IsAuthenticated == true
+                ? User.FindFirstValue(ClaimTypes.NameIdentifier)
+                : null;
+
+            var isOwner = userId != null && job.CreatedById.ToString() == userId;
+
+            var comments = job.Comments
+                .OrderByDescending(c => c.CreatedAt)
+                .Select(c => new JobCommentDto
+                {
+                    AuthorName = c.Author.Name,
+                    Text = c.Text,
+                    CreatedAt = c.CreatedAt
+                })
+                .ToList();
+
+            var applications = isOwner
+                ? job.Applications.Select(a => new ApplicationInfoDto
+                {
+                    StudentName = a.Student.Name,
+                    Status = a.Status.ToString()
+                }).ToList()
+                : null;
+
+            return Ok(new JobDetailsDto
+            {
+                Id = job.Id,
+                Title = job.Title,
+                Description = job.Description,
+                PricePerHour = job.PricePerHour,
+                CreatedAt = job.CreatedAt,
+                IsBoosted = job.IsBoosted,
+                Category = job.Category.Name,
+                CategoryImage = job.Category.ImageUrl ?? "",
+                CreatedBy = job.CreatedBy.Name,
+                Comments = comments,
+                Applications = applications
+            });
         }
 
         [HttpPost]

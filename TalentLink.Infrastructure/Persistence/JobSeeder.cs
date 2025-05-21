@@ -11,7 +11,7 @@ namespace TalentLink.Infrastructure.Persistence
     {
         public static void Seed(TalentLinkDbContext context)
         {
-            if (context.Jobs.Any()) return; // bereits vorhanden
+            if (context.Jobs.Any()) return;
 
             var jobs = new List<Job>
         {
@@ -23,8 +23,8 @@ namespace TalentLink.Infrastructure.Persistence
                 PricePerHour = 10,
                 CreatedAt = DateTime.UtcNow.AddDays(-3),
                 IsBoosted = true,
-                Category = JobCategory.Einkaufen,
-                CreatedById = Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                CategoryId = Guid.Parse("10000000-0000-0000-0000-000000000004"), // Einkaufen
+                CreatedById = Guid.Parse("11111111-1111-1111-1111-111111111111")
             },
             new()
             {
@@ -34,8 +34,8 @@ namespace TalentLink.Infrastructure.Persistence
                 PricePerHour = 15,
                 CreatedAt = DateTime.UtcNow.AddDays(-1),
                 IsBoosted = false,
-                Category = JobCategory.Nachhilfe,
-               CreatedById = Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                CategoryId = Guid.Parse("10000000-0000-0000-0000-000000000003"), // Nachhilfe
+                CreatedById = Guid.Parse("11111111-1111-1111-1111-111111111111")
             },
             new()
             {
@@ -45,7 +45,7 @@ namespace TalentLink.Infrastructure.Persistence
                 PricePerHour = 12,
                 CreatedAt = DateTime.UtcNow,
                 IsBoosted = false,
-                Category = JobCategory.Gartenarbeit,
+                CategoryId = Guid.Parse("10000000-0000-0000-0000-000000000001"), // Gartenarbeit
                 CreatedById = Guid.Parse("11111111-1111-1111-1111-111111111111")
             }
         };
@@ -55,3 +55,4 @@ namespace TalentLink.Infrastructure.Persistence
         }
     }
 }
+

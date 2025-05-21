@@ -14,13 +14,19 @@ namespace TalentLink.Domain.Entities
         public string PasswordHash { get; set; } = null!;
         public UserRole Role { get; set; }
         public ICollection<Job> CreatedJobs { get; set; } = new List<Job>();
+        public ICollection<Rating> GivenRatings { get; set; } = new List<Rating>();
+        public ICollection<Rating> ReceivedRatings { get; set; } = new List<Rating>();
+        public ICollection<JobComment> WrittenComments { get; set; } = new List<JobComment>();
+
+
     }
 
     public enum UserRole
     {
         Student,
         Senior,
-        Parent
+        Parent,
+        Admin
     }
 
     public class Student : User
@@ -32,12 +38,16 @@ namespace TalentLink.Domain.Entities
 
     public class Senior : User
     {
-        public ICollection<Job> CreatedJobs { get; set; } = new List<Job>();
+        
     }
 
     public class Parent : User
     {
         public ICollection<VerifiedStudent> VerifiedStudents { get; set; } = new List<VerifiedStudent>();
+    }
+    public class Admin : User
+    {
+        
     }
 
 }

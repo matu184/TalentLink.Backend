@@ -92,6 +92,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<TalentLinkDbContext>();
     UserSeeder.SeedUsers(context);
+    CategorySeeder.SeedCategories(context);
     JobSeeder.Seed(context);
 }
 app.UseCors(allowedOrigins);

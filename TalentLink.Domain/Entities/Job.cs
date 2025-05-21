@@ -14,11 +14,13 @@ namespace TalentLink.Domain.Entities
         public decimal PricePerHour { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public bool IsBoosted { get; set; }
-        public JobCategory Category { get; set; }
+        public Guid CategoryId { get; set; }
+        public JobCategory Category { get; set; } = null!;
         public Guid CreatedById { get; set; }
         public User CreatedBy { get; set; } = null!;
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
         public bool IsAssigned { get; set; } = false;
+        public ICollection<JobComment> Comments { get; set; } = new List<JobComment>();
 
 
     }

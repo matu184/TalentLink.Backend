@@ -10,9 +10,9 @@ namespace TalentLink.Application.DTOs
     public class AuthResponseDto
     {
         public string Token { get; set; } = null!;
+        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
-        public string Role { get; set; } = null!;
-        public JobCategory Category { get; set; }
-
+        public string Email { get; set; } = null!;
+        public UserRole Role { get; set; }
     }
 }

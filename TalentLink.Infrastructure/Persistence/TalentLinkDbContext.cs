@@ -20,6 +20,11 @@ namespace TalentLink.Infrastructure.Persistence
         public DbSet<Job> Jobs => Set<Job>();
         public DbSet<VerifiedStudent> VerifiedStudents => Set<VerifiedStudent>();
         public DbSet<JobApplication> JobApplications => Set<JobApplication>();
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Tip> Tips { get; set; }
+        public DbSet<JobComment> JobComments { get; set; }
+        public DbSet<JobCategory> JobCategories { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,6 +49,40 @@ namespace TalentLink.Infrastructure.Persistence
                 .HasOne(a => a.Student)
                 .WithMany(s => s.Applications)
                 .HasForeignKey(a => a.StudentId);
+
+            modelBuilder.Entity<Rating>()
+                .HasOne(r => r.FromUser)
+                .WithMany(u => u.GivenRatings)
+                .HasForeignKey(r => r.FromUserId)
+                .OnDelete(DeleteBehavior.Restrict); // wichtig: keine Kettenlöschung
+
+            modelBuilder.Entity<Rating>()
+                .HasOne(r => r.ToUser)
+                .WithMany(u => u.ReceivedRatings)
+                .HasForeignKey(r => r.ToUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<JobComment>()
+                .HasOne(c => c.Job)
+                .WithMany(j => j.Comments)
+                .HasForeignKey(c => c.JobId);
+
+            modelBuilder.Entity<JobComment>()
+                .HasOne(c => c.Author)
+                .WithMany(u => u.WrittenComments)
+                .HasForeignKey(c => c.AuthorId);
+            
+            modelBuilder.Entity<Job>()
+                .HasOne(j => j.Category)
+                .WithMany(c => c.Jobs)
+                .HasForeignKey(j => j.CategoryId);
+
+            modelBuilder.Entity<Tip>()
+                .HasOne(t => t.CreatedBy)
+                .WithMany()
+                .HasForeignKey(t => t.CreatedById)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

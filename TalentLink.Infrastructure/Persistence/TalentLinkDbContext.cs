@@ -24,6 +24,7 @@ namespace TalentLink.Infrastructure.Persistence
         public DbSet<Tip> Tips { get; set; }
         public DbSet<JobComment> JobComments { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
+        public DbSet<Admin> Admins => Set<Admin>();
 
 
 
@@ -34,6 +35,7 @@ namespace TalentLink.Infrastructure.Persistence
             modelBuilder.Entity<Student>().ToTable("Students");
             modelBuilder.Entity<Senior>().ToTable("Seniors");
             modelBuilder.Entity<Parent>().ToTable("Parents");
+            modelBuilder.Entity<Admin>().ToTable("Admins");
 
             modelBuilder.Entity<Job>()
                 .HasOne(j => j.CreatedBy)

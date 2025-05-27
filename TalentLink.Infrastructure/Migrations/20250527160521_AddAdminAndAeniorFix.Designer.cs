@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentLink.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TalentLink.Infrastructure.Persistence;
 namespace TalentLink.Infrastructure.Migrations
 {
     [DbContext(typeof(TalentLinkDbContext))]
-    partial class TalentLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250527160521_AddAdminAndAeniorFix")]
+    partial class AddAdminAndAeniorFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -238,13 +241,6 @@ namespace TalentLink.Infrastructure.Migrations
                     b.ToTable("VerifiedStudents");
                 });
 
-            modelBuilder.Entity("TalentLink.Domain.Entities.Admin", b =>
-                {
-                    b.HasBaseType("TalentLink.Domain.Entities.User");
-
-                    b.ToTable("Admins", (string)null);
-                });
-
             modelBuilder.Entity("TalentLink.Domain.Entities.Parent", b =>
                 {
                     b.HasBaseType("TalentLink.Domain.Entities.User");
@@ -365,15 +361,6 @@ namespace TalentLink.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Parent");
-                });
-
-            modelBuilder.Entity("TalentLink.Domain.Entities.Admin", b =>
-                {
-                    b.HasOne("TalentLink.Domain.Entities.User", null)
-                        .WithOne()
-                        .HasForeignKey("TalentLink.Domain.Entities.Admin", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("TalentLink.Domain.Entities.Parent", b =>

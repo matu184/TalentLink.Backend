@@ -186,16 +186,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "TalentLink.API",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\TalentLink.API.csproj",
               "RelativeDocumentMoniker": "TalentLink.API\\TalentLink.API.csproj",
-              "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\TalentLink.API.csproj*",
-              "RelativeToolTip": "TalentLink.API\\TalentLink.API.csproj*",
+              "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\TalentLink.API.csproj",
+              "RelativeToolTip": "TalentLink.API\\TalentLink.API.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-05-21T19:10:46.07Z",
@@ -748,10 +752,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-05-20T11:30:47.45Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

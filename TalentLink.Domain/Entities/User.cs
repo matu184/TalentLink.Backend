@@ -47,6 +47,7 @@ namespace TalentLink.Domain.Entities
     }
     public class Admin : User
     {
+        bool isAdmin = true;
         
     }
 

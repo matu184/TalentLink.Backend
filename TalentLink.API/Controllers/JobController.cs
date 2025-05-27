@@ -118,12 +118,17 @@ namespace TalentLink.API.Controllers
             if (userId == null)
                 return Unauthorized("Kein Benutzer erkannt.");
 
+            // Kategorie aus der Datenbank laden, nicht das gesendete Objekt verwenden
+            var category = await _context.JobCategories.FindAsync(dto.Category.Id);
+            if (category == null)
+                return BadRequest("Kategorie nicht gefunden.");
+
             var job = new Job
             {
                 Id = Guid.NewGuid(),
                 Title = dto.Title,
                 Description = dto.Description,
-                Category = dto.Category,
+                CategoryId = category.Id, // Use CategoryId instead of Category object
                 PricePerHour = dto.PricePerHour,
                 IsBoosted = dto.IsBoosted,
                 CreatedAt = DateTime.UtcNow,
@@ -131,7 +136,22 @@ namespace TalentLink.API.Controllers
             };
 
             var created = await _jobService.CreateJobAsync(job);
-            return Ok(created);
+
+            // Return a DTO instead of the full entity to avoid circular references
+            var result = new
+            {
+                Id = created.Id,
+                Title = created.Title,
+                Description = created.Description,
+                PricePerHour = created.PricePerHour,
+                IsBoosted = created.IsBoosted,
+                CreatedAt = created.CreatedAt,
+                CategoryId = category.Id,
+                CategoryName = category.Name,
+                CategoryImage = category.ImageUrl
+            };
+
+            return Ok(result);
         }
 
         [HttpPost("{id}/apply")]

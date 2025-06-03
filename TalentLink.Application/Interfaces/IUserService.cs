@@ -11,5 +11,9 @@ namespace TalentLink.Application.Interfaces
     {
         Task<User?> AuthenticateAsync(string email, string password);
         Task<User> RegisterAsync(User user, string password);
+        Task<User?> FindByEmailAsync(string email);
+
+
+       
     }
 }

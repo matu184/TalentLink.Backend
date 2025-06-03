@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using TalentLink.Domain.Entities;
 using TalentLink.Infrastructure.Persistence;
+using TalentLink.Application.DTOs;
 
 namespace TalentLink.API.Controllers
 {
@@ -30,19 +31,24 @@ namespace TalentLink.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Tip tip)
+        public async Task<IActionResult> Create([FromBody] TipCreateDto tip)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null) return Unauthorized();
 
-            tip.Id = Guid.NewGuid();
-            tip.CreatedAt = DateTime.UtcNow;
-            tip.CreatedById = Guid.Parse(userId);
+            var newTip = new Tip
+            {
+                Id = Guid.NewGuid(),
+                Title = tip.Title,
+                Content = tip.Content,
+                CreatedAt = DateTime.UtcNow,
+                CreatedById = Guid.Parse(userId)
+            };
 
-            _context.Tips.Add(tip);
+            _context.Tips.Add(newTip);
             await _context.SaveChangesAsync();
 
-            return Ok(tip);
+            return Ok(newTip);
         }
 
         [HttpDelete("{id}")]
@@ -58,7 +64,8 @@ namespace TalentLink.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Tip updated)
+
+        public async Task<IActionResult> Update(Guid id, [FromBody] TipUpdateDto updated)
         {
             var tip = await _context.Tips.FindAsync(id);
             if (tip == null) return NotFound();

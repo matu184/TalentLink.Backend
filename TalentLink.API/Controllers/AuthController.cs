@@ -6,6 +6,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using TalentLink.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -15,6 +17,7 @@ namespace TalentLink.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
+        private readonly TalentLinkDbContext _context;
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
 
@@ -40,6 +43,22 @@ namespace TalentLink.API.Controllers
             user.Role = (UserRole)input.Role;
 
             var createdUser = await _userService.RegisterAsync(user, input.Password);
+
+            // Wenn Parent → Kind verifizieren
+            if (createdUser is Parent parent && !string.IsNullOrEmpty(input.StudentEmail))
+            {
+                var child = await _userService.FindByEmailAsync(input.StudentEmail);
+                if (child is Student student)
+                {
+                    _context.VerifiedStudents.Add(new VerifiedStudent
+                    {
+                        ParentId = parent.Id,
+                        StudentId = student.Id
+                    });
+                    await _context.SaveChangesAsync();
+                }
+            }
+
             return Ok(createdUser);
         }
 

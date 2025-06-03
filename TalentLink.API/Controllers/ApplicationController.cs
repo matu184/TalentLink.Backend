@@ -20,7 +20,46 @@ public class ApplicationController : ControllerBase
         _context = context;
     }
 
-    
+    [HttpPost("{jobId}")]
+    [Authorize(Roles = "Student")]
+    public async Task<IActionResult> Apply(Guid jobId, [FromBody] ApplyJobDto dto)
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null) return Unauthorized();
+
+        var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == Guid.Parse(userId));
+        if (student == null) return Unauthorized("Kein Student gefunden.");
+
+        
+        bool isVerified = await _context.VerifiedStudents
+            .AnyAsync(v => v.StudentId == student.Id);
+
+        if (!isVerified)
+            return Forbid("Du wurdest noch nicht von einem Elternteil verifiziert.");
+
+        // Doppelte Bewerbung verhindern
+        bool alreadyApplied = await _context.JobApplications
+            .AnyAsync(a => a.JobId == jobId && a.StudentId == student.Id);
+
+        if (alreadyApplied)
+            return BadRequest("Du hast dich bereits auf diesen Job beworben.");
+
+        var application = new JobApplication
+        {
+            Id = Guid.NewGuid(),
+            JobId = jobId,
+            StudentId = student.Id,
+            Message = dto.Message,
+            AppliedAt = DateTime.UtcNow,
+            Status = ApplicationStatus.Pending
+        };
+
+        _context.JobApplications.Add(application);
+        await _context.SaveChangesAsync();
+
+        return Ok("Bewerbung erfolgreich abgeschickt.");
+    }
+
     [HttpPatch("{id}/status")]
     [Authorize(Roles = "Senior")]
     public async Task<IActionResult> UpdateStatus(Guid id, [FromQuery] ApplicationStatus status)
@@ -40,10 +79,8 @@ public class ApplicationController : ControllerBase
 
         if (status == ApplicationStatus.Accepted)
         {
-            // Job als vergeben markieren
             app.Job.IsAssigned = true;
 
-            // andere Bewerbungen auf Rejected setzen
             var andereBewerbungen = await _context.JobApplications
                 .Where(a => a.JobId == app.JobId && a.Id != app.Id)
                 .ToListAsync();
@@ -59,7 +96,6 @@ public class ApplicationController : ControllerBase
         return Ok(new { status = app.Status.ToString() });
     }
 
-    
     [HttpGet("mine")]
     [Authorize(Roles = "Student")]
     public async Task<IActionResult> GetMyApplications()
@@ -83,6 +119,7 @@ public class ApplicationController : ControllerBase
 
         return Ok(applications);
     }
+
     [HttpDelete("{id}")]
     [Authorize(Roles = "Student")]
     public async Task<IActionResult> WithdrawApplication(Guid id)
@@ -104,5 +141,4 @@ public class ApplicationController : ControllerBase
 
         return Ok("Bewerbung wurde zurückgezogen.");
     }
-
 }

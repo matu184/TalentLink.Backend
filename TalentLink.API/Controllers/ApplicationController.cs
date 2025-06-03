@@ -34,7 +34,7 @@ public class ApplicationController : ControllerBase
         bool isVerified = await _context.VerifiedStudents
             .AnyAsync(v => v.StudentId == student.Id);
 
-        if (!isVerified)
+        if (student.VerifiedByParentId == null)
             return Forbid("Du wurdest noch nicht von einem Elternteil verifiziert.");
 
         // Doppelte Bewerbung verhindern

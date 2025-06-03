@@ -35,6 +35,7 @@ namespace TalentLink.API.Controllers
                 0 => new Student(),
                 1 => new Senior(),
                 2 => new Parent(),
+                3 => new Admin(),
                 _ => throw new ArgumentException("Invalid role")
             };
 
@@ -44,23 +45,29 @@ namespace TalentLink.API.Controllers
 
             var createdUser = await _userService.RegisterAsync(user, input.Password);
 
-            // Wenn Parent → Kind verifizieren
-            if (createdUser is Parent parent && !string.IsNullOrEmpty(input.StudentEmail))
+            
+            if (user is Parent parent && !string.IsNullOrWhiteSpace(input.StudentEmail))
             {
                 var child = await _userService.FindByEmailAsync(input.StudentEmail);
                 if (child is Student student)
                 {
-                    _context.VerifiedStudents.Add(new VerifiedStudent
+                    student.VerifiedByParentId = parent.Id;
+
+                    
+                    var verified = new VerifiedStudent
                     {
                         ParentId = parent.Id,
                         StudentId = student.Id
-                    });
+                    };
+
+                    await _context.VerifiedStudents.AddAsync(verified);
                     await _context.SaveChangesAsync();
                 }
             }
 
             return Ok(createdUser);
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)

@@ -21,8 +21,9 @@ namespace TalentLink.API.Controllers
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
 
-        public AuthController(IUserService userService, IConfiguration configuration)
+        public AuthController(IUserService userService, IConfiguration configuration, TalentLinkDbContext context)
         {
+            _context = context;
             _userService = userService;
             _configuration = configuration;
         }
@@ -65,7 +66,7 @@ namespace TalentLink.API.Controllers
                 }
             }
 
-            return Ok(createdUser);
+            return Ok();
         }
 
 
@@ -98,15 +99,22 @@ namespace TalentLink.API.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
+            // Hole VerifiedByParentId, falls Student
+            Guid? verifiedByParentId = null;
+            if (user is Student student)
+            {
+                verifiedByParentId = student.VerifiedByParentId;
+            }
+
             return Ok(new AuthResponseDto
             {
                 Token = tokenString,
                 Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
-                Role = user.Role
+                Role = user.Role.ToString(),
+                VerifiedByParentId = verifiedByParentId
             });
-
         }
     }
 }

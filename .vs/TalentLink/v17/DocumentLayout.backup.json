@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\matu1\\Desktop\\TalentLink\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{33156828-EE08-49A9-9E65-DCCBD436D1BC}|TalentLink.Domain\\TalentLink.Domain.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -210,7 +210,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -222,8 +222,7 @@
               "RelativeToolTip": "TalentLink.Domain\\Entities\\StripeSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T17:03:21.09Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T17:03:21.09Z"
             },
             {
               "$type": "Document",
@@ -235,18 +234,17 @@
               "RelativeToolTip": "TalentLink.API\\Controllers\\StripeWebhookController.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAowCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T16:58:09.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T16:58:09.719Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PaymentsController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\PaymentsController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\PaymentsController.cs",
               "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\PaymentsController.cs",
               "RelativeToolTip": "TalentLink.API\\Controllers\\PaymentsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T16:55:49.8Z",
               "EditorCaption": ""
@@ -261,8 +259,7 @@
               "RelativeToolTip": "TalentLink.Infrastructure\\Services\\StripeService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T16:53:49.84Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T16:53:49.84Z"
             },
             {
               "$type": "Document",
@@ -274,8 +271,7 @@
               "RelativeToolTip": "TalentLink.API\\Controllers\\AuthController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAQwC8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T11:43:59.524Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T11:43:59.524Z"
             },
             {
               "$type": "Document",
@@ -315,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\appsettings.json",
               "RelativeDocumentMoniker": "TalentLink.API\\appsettings.json",
@@ -336,8 +332,7 @@
               "RelativeToolTip": "TalentLink.API\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T11:14:55.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T11:14:55.297Z"
             },
             {
               "$type": "Document",
@@ -349,8 +344,7 @@
               "RelativeToolTip": "TalentLink.Domain\\Entities\\Job.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T11:29:18.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T11:29:18.653Z"
             },
             {
               "$type": "Document",
@@ -398,8 +392,7 @@
               "RelativeToolTip": "TalentLink.API\\Controllers\\JobController.cs",
               "ViewState": "AgIAANMAAAAAAAAAAAAowPkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T13:05:04.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T13:05:04.494Z"
             },
             {
               "$type": "Document",

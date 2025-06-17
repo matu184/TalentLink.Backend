@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\matu1\\Desktop\\TalentLink\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.application\\dtos\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|solutionrelative:talentlink.application\\dtos\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -33,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\controllers\\jobcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\controllers\\jobcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|solutionrelative:talentlink.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{421CE68E-8489-4584-B8EB-A54F78392A2C}|TalentLink.API\\TalentLink.API.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.api\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -167,10 +171,6 @@
       "RelativeMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|solutionrelative:talentlink.application\\dtos\\applyjobdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.application\\dtos\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|solutionrelative:talentlink.application\\dtos\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|c:\\users\\matu1\\desktop\\talentlink\\talentlink.application\\dtos\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{18FC568F-F0CB-4E3F-973A-3341F6D563AC}|TalentLink.Application\\TalentLink.Application.csproj|solutionrelative:talentlink.application\\dtos\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -210,23 +210,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StripeSettings.cs",
-              "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\StripeSettings.cs",
-              "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\StripeSettings.cs",
-              "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\StripeSettings.cs",
-              "RelativeToolTip": "TalentLink.Domain\\Entities\\StripeSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T17:03:21.09Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "StripeWebhookController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\StripeWebhookController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\StripeWebhookController.cs",
@@ -238,20 +226,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "PaymentsController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\PaymentsController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\PaymentsController.cs",
               "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\PaymentsController.cs",
               "RelativeToolTip": "TalentLink.API\\Controllers\\PaymentsController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwCYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAxwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T16:55:49.8Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "StripeService.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Infrastructure\\Services\\StripeService.cs",
               "RelativeDocumentMoniker": "TalentLink.Infrastructure\\Services\\StripeService.cs",
@@ -263,19 +251,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\AuthController.cs",
               "RelativeToolTip": "TalentLink.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAQwC8AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowHgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T11:43:59.524Z"
+              "WhenOpened": "2025-05-20T11:43:59.524Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "IUserService.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\Interfaces\\IUserService.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\Interfaces\\IUserService.cs",
@@ -287,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Infrastructure\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "TalentLink.Infrastructure\\Services\\UserService.cs",
@@ -299,7 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ApplicationController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\ApplicationController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\ApplicationController.cs",
@@ -311,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\appsettings.json",
               "RelativeDocumentMoniker": "TalentLink.API\\appsettings.json",
@@ -319,12 +308,11 @@
               "RelativeToolTip": "TalentLink.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-20T11:33:44.968Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T11:33:44.968Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Program.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Program.cs",
@@ -336,7 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Job.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\Job.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\Job.cs",
@@ -348,7 +336,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 1,
+              "Title": "AuthResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\AuthResponseDto.cs",
+              "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\AuthResponseDto.cs",
+              "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\AuthResponseDto.cs",
+              "RelativeToolTip": "TalentLink.Application\\DTOs\\AuthResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:51:32.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StripeSettings.cs",
+              "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\StripeSettings.cs",
+              "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\StripeSettings.cs",
+              "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\StripeSettings.cs",
+              "RelativeToolTip": "TalentLink.Domain\\Entities\\StripeSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T17:03:21.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\Class1.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\Class1.cs",
@@ -360,7 +373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "UserRegisterDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\UserRegisterDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\UserRegisterDto.cs",
@@ -372,7 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "TipsController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\TipsController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\TipsController.cs",
@@ -384,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "JobController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\JobController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\JobController.cs",
@@ -396,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\User.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\User.cs",
@@ -408,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "TalentLinkDbContext.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Infrastructure\\Persistence\\TalentLinkDbContext.cs",
               "RelativeDocumentMoniker": "TalentLink.Infrastructure\\Persistence\\TalentLinkDbContext.cs",
@@ -420,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "TipCreateDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\TipCreateDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\TipCreateDto.cs",
@@ -432,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "TipUpdateDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\TipUpdateDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\TipUpdateDto.cs",
@@ -444,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Tip.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\Tip.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\Tip.cs",
@@ -456,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\ProfileController.cs",
@@ -468,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "ApplicationStatus.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Enums\\ApplicationStatus.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Enums\\ApplicationStatus.cs",
@@ -480,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "MyApplicationDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\MyApplicationDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\MyApplicationDto.cs",
@@ -492,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "JobApplication.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\JobApplication.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\JobApplication.cs",
@@ -504,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\CategoriesController.cs",
@@ -516,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "RatingController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\RatingController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\RatingController.cs",
@@ -528,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "CategorySeeder.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Infrastructure\\Persistence\\CategorySeeder.cs",
               "RelativeDocumentMoniker": "TalentLink.Infrastructure\\Persistence\\CategorySeeder.cs",
@@ -540,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "TalentLink.API.csproj",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\TalentLink.API.csproj",
               "RelativeDocumentMoniker": "TalentLink.API\\TalentLink.API.csproj",
@@ -552,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "JobDetailsDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\JobDetailsDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\JobDetailsDto.cs",
@@ -564,7 +577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "JobCommentDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\JobCommentDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\JobCommentDto.cs",
@@ -576,7 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "CategoryDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\CategoryDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\CategoryDto.cs",
@@ -588,7 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "JobComment.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\JobComment.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\JobComment.cs",
@@ -600,7 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "CreateJobCommentDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\CreateJobCommentDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\CreateJobCommentDto.cs",
@@ -612,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "JobCommentController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\JobCommentController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\JobCommentController.cs",
@@ -624,7 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "JobSeeder.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Infrastructure\\Persistence\\JobSeeder.cs",
               "RelativeDocumentMoniker": "TalentLink.Infrastructure\\Persistence\\JobSeeder.cs",
@@ -636,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.API\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "TalentLink.API\\Controllers\\AdminController.cs",
@@ -648,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "JobCategory.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\JobCategory.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\JobCategory.cs",
@@ -660,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "CreateRatingDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\CreateRatingDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\CreateRatingDto.cs",
@@ -672,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Rating.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Domain\\Entities\\Rating.cs",
               "RelativeDocumentMoniker": "TalentLink.Domain\\Entities\\Rating.cs",
@@ -684,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "UserSeeder.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Infrastructure\\Persistence\\UserSeeder.cs",
               "RelativeDocumentMoniker": "TalentLink.Infrastructure\\Persistence\\UserSeeder.cs",
@@ -696,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "ApplyJobDto.cs",
               "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\ApplyJobDto.cs",
               "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\ApplyJobDto.cs",
@@ -705,18 +718,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T18:39:37.156Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "AuthResponseDto.cs",
-              "DocumentMoniker": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\AuthResponseDto.cs",
-              "RelativeDocumentMoniker": "TalentLink.Application\\DTOs\\AuthResponseDto.cs",
-              "ToolTip": "C:\\Users\\matu1\\Desktop\\TalentLink\\TalentLink.Application\\DTOs\\AuthResponseDto.cs",
-              "RelativeToolTip": "TalentLink.Application\\DTOs\\AuthResponseDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:51:32.155Z"
             },
             {
               "$type": "Document",

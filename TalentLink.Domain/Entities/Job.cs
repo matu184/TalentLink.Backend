@@ -14,6 +14,8 @@ namespace TalentLink.Domain.Entities
         public decimal PricePerHour { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public bool IsBoosted { get; set; }
+        public bool IsPaid { get; set; } = false;
+
         public Guid CategoryId { get; set; }
         public JobCategory Category { get; set; } = null!;
         public Guid CreatedById { get; set; }

@@ -7,10 +7,21 @@ using TalentLink.Infrastructure.Persistence;
 using TalentLink.Infrastructure.Services;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
+using Stripe;
+using TalentLink.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var allowedOrigins = "_myCorsPolicy";
+
+Stripe.StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+builder.Services.AddScoped<StripeService>();
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+
 
 builder.Services.AddCors(options =>
 {

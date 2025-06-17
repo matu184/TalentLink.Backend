@@ -221,6 +221,33 @@ namespace TalentLink.API.Controllers
 
             return Ok(result);
         }
+        [HttpGet("created-by-me")]
+        [Authorize(Roles = "Senior")]
+        public async Task<IActionResult> GetJobsCreatedByMe()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
+
+            var jobs = await _context.Jobs
+                .Include(j => j.Category)
+                .Where(j => j.CreatedById == Guid.Parse(userId))
+                .OrderByDescending(j => j.CreatedAt)
+                .Select(j => new
+                {
+                    j.Id,
+                    j.Title,
+                    j.Description,
+                    j.PricePerHour,
+                    j.IsBoosted,
+                    j.CreatedAt,
+                    Category = j.Category.Name,
+                    CategoryImage = j.Category.ImageUrl
+                })
+                .ToListAsync();
+
+            return Ok(jobs);
+        }
 
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentLink.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TalentLink.Infrastructure.Persistence;
 namespace TalentLink.Infrastructure.Migrations
 {
     [DbContext(typeof(TalentLinkDbContext))]
-    partial class TalentLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250624054425_AddLocationToUser")]
+    partial class AddLocationToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -48,10 +51,10 @@ namespace TalentLink.Infrastructure.Migrations
                     b.Property<bool>("IsPaid")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Latitude")
+                    b.Property<double?>("Latitude")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Longitude")
+                    b.Property<double?>("Longitude")
                         .HasColumnType("REAL");
 
                     b.Property<int?>("MinimumAge")

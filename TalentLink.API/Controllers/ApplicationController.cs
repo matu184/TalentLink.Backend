@@ -30,14 +30,22 @@ public class ApplicationController : ControllerBase
         var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == Guid.Parse(userId));
         if (student == null) return Unauthorized("Kein Student gefunden.");
 
-        
-        bool isVerified = await _context.VerifiedStudents
-            .AnyAsync(v => v.StudentId == student.Id);
-
+        // 🔒 Verifizierungs-Check
         if (student.VerifiedByParentId == null)
             return Forbid("Du wurdest noch nicht von einem Elternteil verifiziert.");
 
-        // Doppelte Bewerbung verhindern
+        // ✅ Altersprüfung
+        var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == jobId);
+        if (job == null) return NotFound("Job nicht gefunden.");
+
+        if (job.MinimumAge.HasValue)
+        {
+            var age = CalculateAge(student.DateOfBirth);
+            if (age < job.MinimumAge.Value)
+                return Forbid($"Du musst mindestens {job.MinimumAge.Value} Jahre alt sein, um dich auf diesen Job zu bewerben.");
+        }
+
+        // 🔄 Doppelte Bewerbung verhindern
         bool alreadyApplied = await _context.JobApplications
             .AnyAsync(a => a.JobId == jobId && a.StudentId == student.Id);
 
@@ -59,6 +67,7 @@ public class ApplicationController : ControllerBase
 
         return Ok("Bewerbung erfolgreich abgeschickt.");
     }
+
 
     [HttpPatch("{id}/status")]
     [Authorize(Roles = "Senior")]
@@ -141,4 +150,13 @@ public class ApplicationController : ControllerBase
 
         return Ok("Bewerbung wurde zurückgezogen.");
     }
+
+    private int CalculateAge(DateTime birthDate)
+    {
+        var today = DateTime.Today;
+        var age = today.Year - birthDate.Year;
+        if (birthDate > today.AddYears(-age)) age--;
+        return age;
+    }
+
 }

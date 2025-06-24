@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using TalentLink.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using TalentLink.Infrastructure.Services;
 
 
 
@@ -20,6 +21,7 @@ namespace TalentLink.API.Controllers
         private readonly TalentLinkDbContext _context;
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
+        private readonly GeocodingService _geocodingService;
 
         public AuthController(IUserService userService, IConfiguration configuration, TalentLinkDbContext context)
         {
@@ -31,6 +33,7 @@ namespace TalentLink.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto input)
         {
+            // 0-Student | 1-Senior | 2-Parent | 3-Admin
             User user = input.Role switch
             {
                 0 => new Student(),
@@ -44,24 +47,52 @@ namespace TalentLink.API.Controllers
             user.Email = input.Email;
             user.Role = (UserRole)input.Role;
 
+            // ► Student braucht ein Geburtsdatum
+            if (user is Student s)
+            {
+                if (input.DateOfBirth == null)
+                    return BadRequest("Geburtsdatum erforderlich für Studenten.");
+
+                s.DateOfBirth = input.DateOfBirth.Value;
+            }
+
+            // ► Senior braucht PLZ, Ort → Koordinaten automatisch ermitteln
+            if (user is Senior senior)
+            {
+                if (string.IsNullOrWhiteSpace(input.ZipCode) || string.IsNullOrWhiteSpace(input.City))
+                    return BadRequest("PLZ und Ort erforderlich für Senioren.");
+
+                senior.ZipCode = input.ZipCode;
+                senior.City = input.City;
+
+                var (lat, lng) = await _geocodingService.GetCoordinatesAsync(input.ZipCode, input.City);
+                senior.Latitude = lat;
+                senior.Longitude = lng;
+            }
+
+            // -- Benutzer anlegen (Passwort wird dort gehasht)
             var createdUser = await _userService.RegisterAsync(user, input.Password);
 
-            
-            if (user is Parent parent && !string.IsNullOrWhiteSpace(input.StudentEmail))
+            /* ▼ Verifizierung: Parent → Student ---------------------------------- */
+            if (createdUser is Parent parent && !string.IsNullOrWhiteSpace(input.StudentEmail))
             {
                 var child = await _userService.FindByEmailAsync(input.StudentEmail);
                 if (child is Student student)
                 {
                     student.VerifiedByParentId = parent.Id;
 
-                    
-                    var verified = new VerifiedStudent
-                    {
-                        ParentId = parent.Id,
-                        StudentId = student.Id
-                    };
+                    bool alreadyVerified = await _context.VerifiedStudents
+                        .AnyAsync(v => v.StudentId == student.Id && v.ParentId == parent.Id);
 
-                    await _context.VerifiedStudents.AddAsync(verified);
+                    if (!alreadyVerified)
+                    {
+                        await _context.VerifiedStudents.AddAsync(new VerifiedStudent
+                        {
+                            ParentId = parent.Id,
+                            StudentId = student.Id
+                        });
+                    }
+
                     await _context.SaveChangesAsync();
                 }
             }

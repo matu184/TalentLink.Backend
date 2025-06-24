@@ -17,6 +17,11 @@ namespace TalentLink.Domain.Entities
         public ICollection<Rating> GivenRatings { get; set; } = new List<Rating>();
         public ICollection<Rating> ReceivedRatings { get; set; } = new List<Rating>();
         public ICollection<JobComment> WrittenComments { get; set; } = new List<JobComment>();
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+        public string? ZipCode { get; set; }
+        public string? City { get; set; }
+
 
 
     }
@@ -31,6 +36,8 @@ namespace TalentLink.Domain.Entities
 
     public class Student : User
     {
+        public DateTime DateOfBirth { get; set; }
+
         public Guid? VerifiedByParentId { get; set; }
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
 
@@ -38,8 +45,12 @@ namespace TalentLink.Domain.Entities
 
     public class Senior : User
     {
-        
+        public string ZipCode { get; set; } = null!;
+        public string City { get; set; } = null!;
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
+
 
     public class Parent : User
     {

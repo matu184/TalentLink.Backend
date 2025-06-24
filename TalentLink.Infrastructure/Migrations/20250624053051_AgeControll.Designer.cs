@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TalentLink.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using TalentLink.Infrastructure.Persistence;
 namespace TalentLink.Infrastructure.Migrations
 {
     [DbContext(typeof(TalentLinkDbContext))]
-    partial class TalentLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250624053051_AgeControll")]
+    partial class AgeControll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -24,9 +27,6 @@ namespace TalentLink.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("City")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
@@ -48,12 +48,6 @@ namespace TalentLink.Infrastructure.Migrations
                     b.Property<bool>("IsPaid")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("REAL");
-
                     b.Property<int?>("MinimumAge")
                         .HasColumnType("INTEGER");
 
@@ -62,9 +56,6 @@ namespace TalentLink.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ZipCode")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -215,18 +206,9 @@ namespace TalentLink.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("City")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("REAL");
-
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -238,9 +220,6 @@ namespace TalentLink.Infrastructure.Migrations
 
                     b.Property<int>("Role")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

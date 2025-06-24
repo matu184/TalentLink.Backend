@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using TalentLink.API.Utils;
 using TalentLink.Application.DTOs;
 using TalentLink.Application.Interfaces;
 using TalentLink.Domain.Entities;
 using TalentLink.Infrastructure.Persistence;
+using TalentLink.API.Utils;
 
 namespace TalentLink.API.Controllers
 {
@@ -248,6 +250,21 @@ namespace TalentLink.API.Controllers
 
             return Ok(jobs);
         }
+        [HttpGet("search")]
+        [AllowAnonymous]
+        public async Task<IActionResult> SearchNearbyJobs([FromQuery] double latitude, [FromQuery] double longitude, [FromQuery] double radiusKm = 10)
+        {
+            var jobs = await _context.Jobs
+                .Where(j => j.IsPaid && !j.IsAssigned) // nur bezahlte und nicht vergebene Jobs
+                .ToListAsync();
+
+            var nearbyJobs = jobs
+                .Where(j => GeoUtils.DistanceInKm(latitude, longitude, j.Latitude, j.Longitude) <= radiusKm)
+                .ToList();
+
+            return Ok(nearbyJobs);
+        }
+
 
     }
 }

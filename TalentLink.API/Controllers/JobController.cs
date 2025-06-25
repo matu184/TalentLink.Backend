@@ -7,7 +7,6 @@ using TalentLink.Application.DTOs;
 using TalentLink.Application.Interfaces;
 using TalentLink.Domain.Entities;
 using TalentLink.Infrastructure.Persistence;
-using TalentLink.API.Utils;
 
 namespace TalentLink.API.Controllers
 {

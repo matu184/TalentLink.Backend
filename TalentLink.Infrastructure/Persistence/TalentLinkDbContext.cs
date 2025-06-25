@@ -25,6 +25,8 @@ namespace TalentLink.Infrastructure.Persistence
         public DbSet<JobComment> JobComments { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
         public DbSet<Admin> Admins => Set<Admin>();
+        public DbSet<FaqItem> FaqItems { get; set; }
+        public DbSet<GuideCard> GuideCards { get; set; }
 
 
 

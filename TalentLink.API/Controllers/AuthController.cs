@@ -10,8 +10,6 @@ using TalentLink.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using TalentLink.Infrastructure.Services;
 
-
-
 namespace TalentLink.API.Controllers
 {
     [ApiController]
@@ -23,19 +21,12 @@ namespace TalentLink.API.Controllers
         private readonly IConfiguration _configuration;
         private readonly GeocodingService _geocodingService;
 
-<<<<<<< HEAD
         public AuthController(IUserService userService, IConfiguration configuration, TalentLinkDbContext context, GeocodingService geocodingService)
-=======
-        public AuthController(IUserService userService, IConfiguration configuration, TalentLinkDbContext context)
->>>>>>> heroku/main
         {
             _context = context;
             _userService = userService;
             _configuration = configuration;
-<<<<<<< HEAD
             _geocodingService = geocodingService; 
-=======
->>>>>>> heroku/main
         }
 
         [HttpPost("register")]
@@ -76,14 +67,9 @@ namespace TalentLink.API.Controllers
                 var (lat, lng) = await _geocodingService.GetCoordinatesAsync(input.ZipCode, input.City);
                 senior.Latitude = lat;
                 senior.Longitude = lng;
-<<<<<<< HEAD
                 Console.WriteLine($"Senior: {senior.Name}, {senior.ZipCode}, {senior.City}, {senior.Latitude}, {senior.Longitude}");
             }
             
-=======
-            }
-
->>>>>>> heroku/main
             // -- Benutzer anlegen (Passwort wird dort gehasht)
             var createdUser = await _userService.RegisterAsync(user, input.Password);
 
@@ -114,21 +100,11 @@ namespace TalentLink.API.Controllers
             return Ok();
         }
 
-<<<<<<< HEAD
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
             var user = await _userService.AuthenticateAsync(dto.Email, dto.Password, dto.ZipCode, dto.City);
             if (user == null) return Unauthorized("Invalid credentials");
-=======
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginDto dto)
-        {
-            var user = await _userService.AuthenticateAsync(dto.Email, dto.Password);
-            if (user == null)
-                return Unauthorized("Invalid credentials");
->>>>>>> heroku/main
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!);
@@ -137,10 +113,10 @@ namespace TalentLink.API.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-            new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Role, user.Role.ToString()),
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-        }),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                }),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:ExpiresInMinutes"]!)),
                 Issuer = _configuration["Jwt:Issuer"],
                 Audience = _configuration["Jwt:Audience"],
@@ -152,7 +128,6 @@ namespace TalentLink.API.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            // Hole VerifiedByParentId, falls Student
             Guid? verifiedByParentId = null;
             if (user is Student student)
             {
@@ -166,19 +141,10 @@ namespace TalentLink.API.Controllers
                 Name = user.Name,
                 Email = user.Email,
                 Role = user.Role.ToString(),
-<<<<<<< HEAD
                 VerifiedByParentId = verifiedByParentId,
-               
                 ZipCode = user.ZipCode,
-                City = user.City // <-- HINZUGEFÜGT!
+                City = user.City
             });
         }
-
-
-=======
-                VerifiedByParentId = verifiedByParentId
-            });
-        }
->>>>>>> heroku/main
     }
 }

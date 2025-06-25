@@ -23,24 +23,18 @@ namespace TalentLink.Infrastructure.Services
         {
             var query = $"{zip}, {city}";
             var url = $"https://api.opencagedata.com/geocode/v1/json?q={query}&key={_apiKey}";
-<<<<<<< HEAD
             Console.WriteLine($"Geocoding-Request: zip='{zip}', city='{city}'");
-=======
 
->>>>>>> heroku/main
             var response = await _http.GetAsync(url);
             if (!response.IsSuccessStatusCode) throw new Exception("Geocoding fehlgeschlagen");
 
             using var stream = await response.Content.ReadAsStreamAsync();
             var json = await JsonDocument.ParseAsync(stream);
             var results = json.RootElement.GetProperty("results");
-<<<<<<< HEAD
             if (results.GetArrayLength() == 0)
             {
                 throw new Exception($"Kein Geocoding-Ergebnis für '{query}' gefunden.");
             }
-=======
->>>>>>> heroku/main
             var geometry = results[0].GetProperty("geometry");
 
             var lat = geometry.GetProperty("lat").GetDouble();

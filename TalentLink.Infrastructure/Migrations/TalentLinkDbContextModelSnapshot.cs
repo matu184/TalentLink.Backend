@@ -17,7 +17,6 @@ namespace TalentLink.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
-<<<<<<< HEAD
             modelBuilder.Entity("TalentLink.Domain.Entities.FaqItem", b =>
                 {
                     b.Property<int>("Id")
@@ -74,8 +73,6 @@ namespace TalentLink.Infrastructure.Migrations
                     b.ToTable("GuideCards");
                 });
 
-=======
->>>>>>> heroku/main
             modelBuilder.Entity("TalentLink.Domain.Entities.Job", b =>
                 {
                     b.Property<Guid>("Id")
@@ -352,11 +349,7 @@ namespace TalentLink.Infrastructure.Migrations
                 {
                     b.HasBaseType("TalentLink.Domain.Entities.User");
 
-<<<<<<< HEAD
                     b.Property<DateOnly>("DateOfBirth")
-=======
-                    b.Property<DateTime>("DateOfBirth")
->>>>>>> heroku/main
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("VerifiedByParentId")

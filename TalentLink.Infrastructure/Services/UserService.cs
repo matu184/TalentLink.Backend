@@ -7,10 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using TalentLink.Application.Interfaces;
 using TalentLink.Domain.Entities;
 using TalentLink.Infrastructure.Persistence;
-<<<<<<< HEAD
 using BCrypt.Net;
-=======
->>>>>>> heroku/main
 
 namespace TalentLink.Infrastructure.Services
 {
@@ -23,7 +20,6 @@ namespace TalentLink.Infrastructure.Services
             _context = context;
         }
 
-<<<<<<< HEAD
         public async Task<User?> AuthenticateAsync(string email, string password, string zipCode, string city)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
@@ -32,21 +28,11 @@ namespace TalentLink.Infrastructure.Services
                 return user;
             }
             return null;
-=======
-        public async Task<User?> AuthenticateAsync(string email, string password)
-        {
-            // Achtung: Nur zu Demozwecken – Passwort ist Klartext!
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.PasswordHash == password);
->>>>>>> heroku/main
         }
 
         public async Task<User> RegisterAsync(User user, string password)
         {
-<<<<<<< HEAD
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
-=======
-            user.PasswordHash = password; // Hier später Hashing einbauen!
->>>>>>> heroku/main
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;

@@ -10,11 +10,7 @@ namespace TalentLink.Application.DTOs
     {
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-<<<<<<< HEAD
-        public string? ZipCode { get; set; } = null!; 
-
-        public string? City { get; set; } = null!; // Optional für Senioren, um Koordinaten zu ermitteln
-=======
->>>>>>> heroku/main
+        public string ZipCode { get; set; } = null!;
+        public string City { get; set; } = null!;
     }
 }

@@ -151,18 +151,11 @@ public class ApplicationController : ControllerBase
         return Ok("Bewerbung wurde zurückgezogen.");
     }
 
-<<<<<<< HEAD
-    private int CalculateAge(DateOnly birthDate)
-    {
-        var today = DateOnly.FromDateTime(DateTime.Today);
-=======
     private int CalculateAge(DateTime birthDate)
     {
         var today = DateTime.Today;
->>>>>>> heroku/main
         var age = today.Year - birthDate.Year;
         if (birthDate > today.AddYears(-age)) age--;
         return age;
     }
-
 }

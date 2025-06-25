@@ -14,11 +14,7 @@ namespace TalentLink.Application.DTOs
         public JobCategory Category { get; set; }
         public decimal PricePerHour { get; set; }
         public bool IsBoosted { get; set; }
-<<<<<<< HEAD
-        public string? ZipCode { get; set; }
-        public string? City { get; set;  }
-        public int MinimumAge { get; set;  }
-=======
->>>>>>> heroku/main
+        public string ZipCode { get; set; } = null!;
+        public int MinimumAge { get; set; }
     }
 }

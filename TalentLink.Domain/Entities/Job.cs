@@ -28,8 +28,11 @@ namespace TalentLink.Domain.Entities
         public ICollection<JobComment> Comments { get; set; } = new List<JobComment>();
         public int? MinimumAge { get; set; } // optional, falls nicht gesetzt
 
+<<<<<<< HEAD
         
 
+=======
+>>>>>>> heroku/main
 
     }
 }

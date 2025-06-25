@@ -1,6 +1,10 @@
 bin/
 obj/
+<<<<<<< HEAD
 .vs/
+=======
+
+>>>>>>> heroku/main
 .vscode/
 *.user
 *.suo
@@ -8,4 +12,8 @@ obj/
 *.sln.docstates
 .env
 *.swp
+<<<<<<< HEAD
 TalentLink.API/appsettings.json
+=======
+
+>>>>>>> heroku/main

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using TalentLink.API.Utils;
+<<<<<<< HEAD
 using TalentLink.API.Utils;
 using TalentLink.Application.DTOs;
 using TalentLink.Application.Interfaces;
@@ -10,6 +11,12 @@ using TalentLink.Domain.Entities;
 using TalentLink.Infrastructure.Migrations;
 using TalentLink.Infrastructure.Persistence;
 using TalentLink.Infrastructure.Services;
+=======
+using TalentLink.Application.DTOs;
+using TalentLink.Application.Interfaces;
+using TalentLink.Domain.Entities;
+using TalentLink.Infrastructure.Persistence;
+>>>>>>> heroku/main
 
 namespace TalentLink.API.Controllers
 {
@@ -19,6 +26,7 @@ namespace TalentLink.API.Controllers
     {
         private readonly IJobService _jobService;
         private readonly TalentLinkDbContext _context;
+<<<<<<< HEAD
         private readonly GeocodingService _geocodingService;
 
 
@@ -35,6 +43,13 @@ namespace TalentLink.API.Controllers
             var age = today.Year - birthDate.Year;
             if (birthDate > today.AddYears(-age)) age--;
             return age;
+=======
+
+        public JobController(IJobService jobService, TalentLinkDbContext context)
+        {
+            _jobService = jobService;
+            _context = context;
+>>>>>>> heroku/main
         }
 
         [HttpGet]
@@ -51,6 +66,7 @@ namespace TalentLink.API.Controllers
                 query = query.Where(j => j.CategoryId == categoryId.Value);
             }
 
+<<<<<<< HEAD
             // Debug: Claims ausgeben
             Console.WriteLine($"[Job-GetAll] IsAuthenticated: {User.Identity?.IsAuthenticated}, Claims: {string.Join(", ", User.Claims.Select(c => c.Type + ":" + c.Value))}");
 
@@ -79,14 +95,21 @@ namespace TalentLink.API.Controllers
             var jobs = await query
                 .OrderByDescending(j => j.CreatedAt)
                 .Where(j => !j.MinimumAge.HasValue || (userAge.HasValue && userAge.Value >= j.MinimumAge.Value))
+=======
+            var jobs = await query
+                .OrderByDescending(j => j.CreatedAt)
+>>>>>>> heroku/main
                 .Select(j => new
                 {
                     j.Id,
                     j.Title,
                     j.PricePerHour,
                     j.IsBoosted,
+<<<<<<< HEAD
                     j.IsPaid,
                     j.IsAssigned,
+=======
+>>>>>>> heroku/main
                     j.CreatedAt,
                     Category = j.Category.Name,
                     CategoryImage = j.Category.ImageUrl,
@@ -166,11 +189,14 @@ namespace TalentLink.API.Controllers
             if (category == null)
                 return BadRequest("Kategorie nicht gefunden.");
 
+<<<<<<< HEAD
             // Hole den eingeloggten User aus der Datenbank
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(userId));
             if (user == null)
                 return Unauthorized("Benutzer nicht gefunden.");
 
+=======
+>>>>>>> heroku/main
             var job = new Job
             {
                 Id = Guid.NewGuid(),
@@ -180,6 +206,7 @@ namespace TalentLink.API.Controllers
                 PricePerHour = dto.PricePerHour,
                 IsBoosted = dto.IsBoosted,
                 CreatedAt = DateTime.UtcNow,
+<<<<<<< HEAD
                 CreatedById = Guid.Parse(userId),
                 ZipCode = dto.ZipCode,
                 City = user.City, // City aus eingeloggtem User setzen
@@ -200,6 +227,11 @@ namespace TalentLink.API.Controllers
                 Console.WriteLine($"Geocoding fehlgeschlagen: {ex.Message}");
             }
 
+=======
+                CreatedById = Guid.Parse(userId)
+            };
+
+>>>>>>> heroku/main
             var created = await _jobService.CreateJobAsync(job);
 
             // Return a DTO instead of the full entity to avoid circular references
@@ -213,10 +245,14 @@ namespace TalentLink.API.Controllers
                 CreatedAt = created.CreatedAt,
                 CategoryId = category.Id,
                 CategoryName = category.Name,
+<<<<<<< HEAD
                 CategoryImage = category.ImageUrl,
                 CreateOrt = created.City,
                 Latitude = created.Latitude,
                 Longitude = created.Longitude
+=======
+                CategoryImage = category.ImageUrl
+>>>>>>> heroku/main
             };
 
             return Ok(result);
@@ -297,6 +333,7 @@ namespace TalentLink.API.Controllers
             if (userId == null)
                 return Unauthorized();
 
+<<<<<<< HEAD
             // Altersfilter für eingeloggte Students (optional, falls du es auch hier willst)
             var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
             int? userAge = null;
@@ -307,11 +344,16 @@ namespace TalentLink.API.Controllers
                     userAge = CalculateAge(student.DateOfBirth);
             }
 
+=======
+>>>>>>> heroku/main
             var jobs = await _context.Jobs
                 .Include(j => j.Category)
                 .Where(j => j.CreatedById == Guid.Parse(userId))
                 .OrderByDescending(j => j.CreatedAt)
+<<<<<<< HEAD
                 .Where(j => !userAge.HasValue || !j.MinimumAge.HasValue || userAge.Value >= j.MinimumAge.Value)
+=======
+>>>>>>> heroku/main
                 .Select(j => new
                 {
                     j.Id,
@@ -332,6 +374,7 @@ namespace TalentLink.API.Controllers
         public async Task<IActionResult> SearchNearbyJobs([FromQuery] double latitude, [FromQuery] double longitude, [FromQuery] double radiusKm = 10)
         {
             var jobs = await _context.Jobs
+<<<<<<< HEAD
                 .Include(j => j.Category)
                 .Where(j => j.IsPaid && !j.IsAssigned)
                 .ToListAsync();
@@ -365,11 +408,19 @@ namespace TalentLink.API.Controllers
                     j.Latitude,
                     j.Longitude
                 })
+=======
+                .Where(j => j.IsPaid && !j.IsAssigned) // nur bezahlte und nicht vergebene Jobs
+                .ToListAsync();
+
+            var nearbyJobs = jobs
+                .Where(j => GeoUtils.DistanceInKm(latitude, longitude, j.Latitude, j.Longitude) <= radiusKm)
+>>>>>>> heroku/main
                 .ToList();
 
             return Ok(nearbyJobs);
         }
 
+<<<<<<< HEAD
         [HttpGet("geocode")]
         [AllowAnonymous]
         public async Task<IActionResult> Geocode([FromQuery] string? query, [FromQuery] string? zipcode, [FromQuery] string? city)
@@ -384,6 +435,8 @@ namespace TalentLink.API.Controllers
             var (lat2, lng2) = await _geocodingService.GetCoordinatesAsync(zipcode, city);
             return Ok(new { Lat = lat2, Lng = lng2 });
         }
+=======
+>>>>>>> heroku/main
 
     }
 }

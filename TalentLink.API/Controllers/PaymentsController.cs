@@ -63,7 +63,10 @@ public class PaymentController : ControllerBase
             return BadRequest($"⚠️ Webhook-Fehler: {ex.Message}");
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> heroku/main
     [HttpPost("create-session")]
     [Authorize] // Falls du Authorization brauchst
     public async Task<IActionResult> CreateSession([FromBody] CreateSessionRequest request)
@@ -77,11 +80,14 @@ public class PaymentController : ControllerBase
                 return NotFound("Job nicht gefunden");
             }
 
+<<<<<<< HEAD
             // Preislogik: 1€ für Erstellen, 2€ für Boost
             long amountInCents = request.IsBoost ? 300 : 100;
             string productName = request.IsBoost ? "Job Boost" : "Job Erstellung";
             string productDescription = request.IsBoost ? $"Boost für Job: {job.Title}" : $"Erstellung für Job: {job.Title}";
 
+=======
+>>>>>>> heroku/main
             // Erstelle Stripe Checkout Session
             var options = new SessionCreateOptions
             {
@@ -92,24 +98,41 @@ public class PaymentController : ControllerBase
                     {
                         PriceData = new SessionLineItemPriceDataOptions
                         {
+<<<<<<< HEAD
                             UnitAmount = amountInCents, // 100 = 1€, 200 = 2€
                             Currency = "eur",
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
                                 Name = productName,
                                 Description = productDescription
+=======
+                            UnitAmount = request.Amount, // Betrag in Cent (z.B. 499 für 4,99€)
+                            Currency = "eur",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = "Job Boost",
+                                Description = $"Boost für Job: {job.Title}"
+>>>>>>> heroku/main
                             }
                         },
                         Quantity = 1
                     }
                 },
                 Mode = "payment",
+<<<<<<< HEAD
                 SuccessUrl = request.SuccessUrl ?? "https://c09e-84-171-168-238.ngrok-free.app/successpage",                    
                 CancelUrl = request.CancelUrl ?? "https://c09e-84-171-168-238.ngrok-free.app ",
                 Metadata = new Dictionary<string, string>
                 {
                     ["jobId"] = request.JobId.ToString(),
                     ["isBoost"] = request.IsBoost.ToString()
+=======
+                SuccessUrl = $"{_config["Frontend:BaseUrl"]}/payment/success?session_id={{CHECKOUT_SESSION_ID}}",
+                CancelUrl = $"{_config["Frontend:BaseUrl"]}/payment/cancel",
+                Metadata = new Dictionary<string, string>
+                {
+                    ["jobId"] = request.JobId.ToString()
+>>>>>>> heroku/main
                 }
             };
 
@@ -130,14 +153,21 @@ public class PaymentController : ControllerBase
             return StatusCode(500, $"Server Fehler: {ex.Message}");
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> heroku/main
     // DTOs für die API
     public class CreateSessionRequest
     {
         public Guid JobId { get; set; }
+<<<<<<< HEAD
         public bool IsBoost { get; set; } // true = Boost, false = Erstellung
         public string? SuccessUrl { get; set; }
         public string? CancelUrl { get; set; }
+=======
+        public long Amount { get; set; } // Betrag in Cent
+>>>>>>> heroku/main
     }
 
     public class CreateSessionResponse

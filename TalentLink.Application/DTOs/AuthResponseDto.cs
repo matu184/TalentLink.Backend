@@ -15,8 +15,11 @@ namespace TalentLink.Application.DTOs
         public string Email { get; set; } = null!;
         public String Role { get; set; } = null!;
         public Guid? VerifiedByParentId { get; set; } 
+<<<<<<< HEAD
         public string? ZipCode { get; set; }
         public string? City { get; set; } // Optional für Senioren, um Koordinaten zu ermitteln
+=======
+>>>>>>> heroku/main
 
     }
 }
